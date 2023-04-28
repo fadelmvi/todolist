@@ -8,6 +8,12 @@ import { MyIssuesComponent } from './home/components/my-issues/my-issues.compone
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ModalIssueComponent } from './home/components/modal-issue/modal-issue.component';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
+// firebase
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { firebaseConfig } from '../environments/firebase';
 
 @NgModule({
   declarations: [
@@ -15,15 +21,18 @@ import { RouterModule } from '@angular/router';
     HomeComponent,
     SidebarComponent,
     MyIssuesComponent,
-    ModalIssueComponent
+    ModalIssueComponent,
   ],
   imports: [
     BrowserModule,
     FontAwesomeModule,
     RouterModule.forRoot([
-      {path: '', component: HomeComponent},
-      {path: 'modal-issue', component: ModalIssueComponent}
-    ])
+      { path: '', component: HomeComponent },
+      { path: 'modal-issue', component: ModalIssueComponent }
+    ]),
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

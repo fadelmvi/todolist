@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { faXmark, faArrowsUpDownLeftRight, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+import { DatabaseService } from 'src/app/database.service';
 
 @Component({
   selector: 'app-modal-issue',
@@ -16,4 +17,18 @@ export class ModalIssueComponent {
   close(): void {
     this.closeIssue.emit()
   }
+
+  dataIssue = {
+    title: '',
+    description: ''
+  }
+
+  constructor(private ds: DatabaseService) {}
+
+  onSubmit(): void {
+    this.ds.createIssue(this.dataIssue)
+    this.close()
+  }
+  
+
 }
