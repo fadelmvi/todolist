@@ -3,6 +3,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { faXmark, faArrowsUpDownLeftRight, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { DatabaseService } from 'src/app/database.service';
 import { Subject } from 'rxjs';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-modal-issue',
@@ -21,24 +22,29 @@ export class ModalIssueComponent implements OnInit {
     this.closeIssue.emit()
   }
 
-  constructor(private ds: DatabaseService) { }
+  constructor(
+    private ds: DatabaseService,
+    private fb: FormBuilder,
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   issueAdded: Subject<boolean> = new Subject<boolean>();
 
-  issue = {
-    title: '',
-    description: '',
-    dueDate: '',
-  }
+  myForm: FormGroup = this.fb.group({
+    'title': ['', Validators.required],
+    description: ['', Validators.required],
+    dueDate: ['', Validators.required],
+  })
 
   onSubmit() {
-    this.ds.createIssue(this.issue)
-      .then(() => {
-        this.issueAdded.next(true);
-        this.close()
-      })
+    if (this.myForm.valid) {
+      this.ds.createIssue(this.myForm.value)
+        .then(() => {
+          this.issueAdded.next(true);
+          this.close()
+        })
+    }
+    this.myForm.markAllAsTouched()
   }
-
 }

@@ -8,7 +8,7 @@ import { MyIssuesComponent } from './home/components/my-issues/my-issues.compone
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ModalIssueComponent } from './home/components/modal-issue/modal-issue.component';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // firebase
 import { AngularFireModule } from '@angular/fire/compat';
@@ -32,7 +32,8 @@ import { firebaseConfig } from '../environments/firebase';
     ]),
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
