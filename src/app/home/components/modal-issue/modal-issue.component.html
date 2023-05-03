@@ -1,16 +1,21 @@
 <div class="absolute top-0 left-0 w-screen h-screen backdrop-blur-md bg-black/30"></div>
 <div class="p-6 w-2/5 h-auto border rounded-lg bg-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
   <div class="flex justify-between mb-2">
-    <!-- <p>Design Task</p> -->
-    <input [(ngModel)]="dataIssue.title" type="text" placeholder="Issue name" class="py-1 pr-2 outline-none w-full" />
+
+    <input [(ngModel)]="issue.title" type="text" placeholder="Issue name" class="py-1 pr-2 outline-none w-full" />
     <div class="flex">
       <fa-icon class="cursor-pointer px-2" [icon]="faXmark" (click)="close()"></fa-icon>
     </div>
   </div>
 
   <div class="py-2">
-    <textarea [(ngModel)]="dataIssue.description" type="text" placeholder="description..."
+    <textarea [(ngModel)]="issue.description" type="text" placeholder="description..."
       class="outline-none w-full overflow-hidden max-h-[50vh] min-h-[80px]"></textarea>
+  </div>
+
+  <div class="flex">
+    <p class="mr-4 text-slate-400">due date</p>
+    <input [(ngModel)]="issue.dueDate" type="date" class="outline-none" />
   </div>
 
   <div class="flex justify-end mt-4">

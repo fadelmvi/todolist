@@ -1,13 +1,16 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { faXmark, faArrowsUpDownLeftRight, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { DatabaseService } from 'src/app/database.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-modal-issue',
   templateUrl: './modal-issue.component.html',
-  styleUrls: ['./modal-issue.component.css']
+  styleUrls: ['./modal-issue.component.css'],
+  providers: [DatePipe]
 })
-export class ModalIssueComponent {
+export class ModalIssueComponent implements OnInit {
   faXmark = faXmark
   faArrowsUpDownLeftRight = faArrowsUpDownLeftRight
   faEllipsisVertical = faEllipsisVertical
@@ -18,17 +21,24 @@ export class ModalIssueComponent {
     this.closeIssue.emit()
   }
 
-  dataIssue = {
+  constructor(private ds: DatabaseService) { }
+
+  ngOnInit(): void {}
+
+  issueAdded: Subject<boolean> = new Subject<boolean>();
+
+  issue = {
     title: '',
-    description: ''
+    description: '',
+    dueDate: '',
   }
 
-  constructor(private ds: DatabaseService) {}
-
-  onSubmit(): void {
-    this.ds.createIssue(this.dataIssue)
-    this.close()
+  onSubmit() {
+    this.ds.createIssue(this.issue)
+      .then(() => {
+        this.issueAdded.next(true);
+        this.close()
+      })
   }
-  
 
 }
