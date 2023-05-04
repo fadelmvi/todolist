@@ -1,20 +1,18 @@
-<div class="border-r border-slate-100 h-screen p-4 flex flex-col justify-between">
+<div class="fixed w-1/6 border-r border-slate-100 h-screen p-4 flex flex-col justify-between">
 
   <div>
     <img src="" />
-    <button class="border w-full p-1 rounded my-4" (click)="openModalIssue()">
+    <button id="modal" class="border w-full p-1 rounded my-4" (click)="openModalIssue()">
       <fa-icon [icon]="faCheckDouble" />
       New issue
     </button>
 
-    <app-modal-issue *ngIf="modalIssueVisible" (closeIssue)="closeModalIssue()"></app-modal-issue>
-
     <div class="">
-      <div class="flex p-1.5 my-2 cursor-pointer rounded hover:bg-slate-100">
+      <div class="flex p-1.5 my-2 cursor-pointer rounded element hover:bg-slate-100" (click)="handleClick(elements[0])" [class.clicked]="elements[0].clicked">
         <fa-icon [icon]="faInbox" />
         <p class="pl-2">Inbox</p>
       </div>
-      <div class="flex p-1.5 my-2 cursor-pointer rounded hover:bg-slate-100">
+      <div class="flex p-1.5 my-2 cursor-pointer rounded element hover:bg-slate-100" (click)="handleClick(elements[1])" [class.clicked]="elements[1].clicked">
         <fa-icon [icon]="faCheckDouble" />
         <p class="pl-2">My issues</p>
       </div>
@@ -43,3 +41,5 @@
   </div>
 
 </div>
+
+<app-modal-issue *ngIf="modalIssueVisible" (closeIssue)="closeModalIssue()"></app-modal-issue>

@@ -23,4 +23,16 @@ export class SidebarComponent {
   closeModalIssue(): void { 
     this.modalIssueVisible = false    
   }
+
+  elements = [
+    { id: 1, clicked: false },
+    { id: 2, clicked: false },
+    { id: 3, clicked: false }
+  ];
+
+  handleClick(element: any) {
+    this.elements.forEach(e => e.clicked = false);
+    element.clicked = true;
+  }
+  
 }

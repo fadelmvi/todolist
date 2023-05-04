@@ -1,22 +1,19 @@
-<div class="absolute top-0 left-0 w-screen h-screen backdrop-blur-md bg-black/30"></div>
-<div class="p-6 w-2/5 h-auto border rounded-lg bg-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<div class="absolute z-10 w-screen h-screen backdrop-blur-md bg-black/30"></div>
+<div class="p-6 w-2/5 h-auto border rounded-lg bg-white absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
 
   <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-    <div class="flex justify-between mb-2">
-      <div class="w-11/12">
-        <input formControlName="title" type="text" placeholder="Issue name" class="py-1 pr-2 outline-none w-full" />
+    <div class="flex justify-end">
+      <fa-icon class="cursor-pointer px-2" [icon]="faXmark" (click)="close()"></fa-icon>
+    </div>
+    <div class="mb-4">
+        <input formControlName="title" type="text" name="title" placeholder="Issue name" class="outline-none w-full" />
         <div *ngIf="myForm.get('title')?.invalid  && (myForm.get('title')?.dirty || myForm.get('title')?.touched)">
           <p class="text-red-500 text-sm">issue is required.</p>
         </div>
-      </div>
-
-      <div class="flex">
-        <fa-icon class="cursor-pointer px-2" [icon]="faXmark" (click)="close()"></fa-icon>
-      </div>
     </div>
 
-    <div class="py-2 mb-2">
-      <textarea formControlName="description" type="text" placeholder="description..."
+    <div class="mb-4">
+      <textarea formControlName="description" type="text" name="description" placeholder="description..."
         class="outline-none w-full overflow-hidden max-h-[50vh] min-h-[80px]"></textarea>
       <div
         *ngIf="myForm.get('description')?.invalid  && (myForm.get('description')?.dirty || myForm.get('description')?.touched)">
@@ -24,10 +21,10 @@
       </div>
     </div>
 
-    <div class="flex py-2">
+    <div class="flex mb-4">
       <p class="mr-4 text-slate-400">due date</p>
       <div>
-        <input formControlName="dueDate" type="date" class="outline-none" />
+        <input formControlName="dueDate" type="date" name="dueDate" class="outline-none" />
         <div
           *ngIf="myForm.get('dueDate')?.invalid  && (myForm.get('dueDate')?.dirty || myForm.get('dueDate')?.touched)">
           <p class="text-red-500 text-sm">due date is required.</p>
@@ -35,7 +32,7 @@
       </div>
     </div>
 
-    <div class="flex justify-end mt-4">
+    <div class="flex justify-end">
       <fa-icon class="cursor-pointer mx-4 my-auto px-2" [icon]="faEllipsisVertical"></fa-icon>
       <button type="submit" class="bg-blue-400 rounded p-2 leading-5 text-white">Add new issue</button>
     </div>
