@@ -8,13 +8,13 @@
     </button>
 
     <div class="">
-      <div class="flex p-1.5 my-2 cursor-pointer rounded element hover:bg-slate-100" (click)="handleClick(elements[0])" [class.clicked]="elements[0].clicked">
+      <div routerLink="./inbox" class="flex p-1.5 my-2 cursor-pointer rounded element hover:bg-slate-100" (click)="handleClick(elements[0])" [class.clicked]="elements[0].clicked">
         <fa-icon [icon]="faInbox" />
-        <p class="pl-2">Inbox</p>
+        <a class="pl-2">Inbox</a>
       </div>
-      <div class="flex p-1.5 my-2 cursor-pointer rounded element hover:bg-slate-100" (click)="handleClick(elements[1])" [class.clicked]="elements[1].clicked">
+      <div routerLink="./my-issues" class="flex p-1.5 my-2 cursor-pointer rounded element hover:bg-slate-100" (click)="handleClick(elements[1])" [class.clicked]="elements[1].clicked">
         <fa-icon [icon]="faCheckDouble" />
-        <p class="pl-2">My issues</p>
+        <a class="pl-2">My issues</a>
       </div>
       <div class="flex p-1.5 my-2 cursor-pointer rounded hover:bg-slate-100">
         <fa-icon [icon]="faSquareArrowUpRight" />

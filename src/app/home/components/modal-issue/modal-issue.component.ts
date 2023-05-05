@@ -32,7 +32,7 @@ export class ModalIssueComponent implements OnInit {
   issueAdded: Subject<boolean> = new Subject<boolean>();
 
   myForm: FormGroup = this.fb.group({
-    'title': ['', Validators.required],
+    title: ['', Validators.required],
     description: ['', Validators.required],
     dueDate: ['', Validators.required],
   })

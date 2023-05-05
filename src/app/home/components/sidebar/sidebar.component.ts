@@ -25,7 +25,7 @@ export class SidebarComponent {
   }
 
   elements = [
-    { id: 1, clicked: false },
+    { id: 1, clicked: true },
     { id: 2, clicked: false },
     { id: 3, clicked: false }
   ];

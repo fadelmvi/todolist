@@ -1,4 +1,6 @@
-<div class="flex flex-row h-screen">
+<div class="flex flex-row h-screen w-screen">
   <app-sidebar class="basis-1/6"></app-sidebar>
-  <app-my-issues class="basis-5/6"></app-my-issues>
+  <div class="basis-5/6">
+    <router-outlet></router-outlet>
+  </div>
 </div>

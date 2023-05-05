@@ -14,6 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { firebaseConfig } from '../environments/firebase';
+import { TesComponent } from './tes/tes.component';
+import { InboxComponent } from './home/components/my-issues/component/inbox/inbox.component';
 
 @NgModule({
   declarations: [
@@ -22,12 +24,21 @@ import { firebaseConfig } from '../environments/firebase';
     SidebarComponent,
     MyIssuesComponent,
     ModalIssueComponent,
+    TesComponent,
+    InboxComponent,
   ],
   imports: [
     BrowserModule,
     FontAwesomeModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent },
+      { path: '', redirectTo: 'home/inbox', pathMatch: 'full' },
+      { path: 'home', redirectTo: 'home/inbox', pathMatch: 'full'},
+      {
+        path: 'home', component: HomeComponent, children: [
+          { path: 'inbox', component: InboxComponent },
+          { path: 'my-issues', component: MyIssuesComponent }
+        ]
+      },
       { path: 'modal-issue', component: ModalIssueComponent }
     ]),
     AngularFireDatabaseModule,
