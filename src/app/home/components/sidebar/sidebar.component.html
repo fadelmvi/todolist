@@ -2,31 +2,37 @@
 
   <div>
     <img src="" />
-    <button id="modal" class="border w-full p-1 rounded my-4" (click)="openModalIssue()">
+    <button id="modal" class="border w-full p-1 rounded my-4" (click)="openModal()">
       <fa-icon [icon]="faCheckDouble" />
       New issue
     </button>
 
-    <div class="">
-      <div routerLink="./inbox" class="flex p-1.5 my-2 cursor-pointer rounded element hover:bg-slate-100" (click)="handleClick(elements[0])" [class.clicked]="elements[0].clicked">
+    <div class="sidebar">
+
+      <div routerLink="./task" class="flex p-1.5 my-2 cursor-pointer rounded element hover:bg-slate-100" routerLinkActive="active">
+        <fa-icon [icon]="faList" />
+        <a class="pl-2">My Task</a>
+      </div>
+      <div routerLink="./completed" class="flex p-1.5 my-2 cursor-pointer rounded element hover:bg-slate-100" routerLinkActive="active">
+        <fa-icon [icon]="faCheckDouble" />
+        <a class="pl-2">Completed</a>
+      </div>
+      <!-- <div routerLink="./inbox" class="flex p-1.5 my-2 cursor-pointer rounded element hover:bg-slate-100" routerLinkActive="active">
         <fa-icon [icon]="faInbox" />
         <a class="pl-2">Inbox</a>
-      </div>
-      <div routerLink="./my-issues" class="flex p-1.5 my-2 cursor-pointer rounded element hover:bg-slate-100" (click)="handleClick(elements[1])" [class.clicked]="elements[1].clicked">
-        <fa-icon [icon]="faCheckDouble" />
-        <a class="pl-2">My issues</a>
-      </div>
-      <div class="flex p-1.5 my-2 cursor-pointer rounded hover:bg-slate-100">
+      </div> -->
+
+      <!-- <div class="flex p-1.5 my-2 cursor-pointer rounded hover:bg-slate-100">
         <fa-icon [icon]="faSquareArrowUpRight" />
         <p class="pl-2">Views</p>
-      </div>
+      </div> -->
     </div>
 
-    <p class="mt-4 text-sm">Your team</p>
+    <!-- <p class="mt-4 text-sm">Your team</p>
     <div class="flex p-1.5 my-2 cursor-pointer rounded hover:bg-slate-100">
       <fa-icon [icon]="faFolderBlank" />
       <p class="pl-2">Projcets</p>
-    </div>
+    </div> -->
   </div>
 
   <div>
@@ -42,4 +48,4 @@
 
 </div>
 
-<app-modal-issue *ngIf="modalIssueVisible" (closeIssue)="closeModalIssue()"></app-modal-issue>
+<app-modal *ngIf="modalVisible" (closeModal)="closeModal()"></app-modal>

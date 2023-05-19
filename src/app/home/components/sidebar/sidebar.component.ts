@@ -1,38 +1,41 @@
-import { Component } from '@angular/core';
-import { faInbox, faCheckDouble, faSquareArrowUpRight, faFolderBlank, faUser, faGear } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { faInbox, faCheckDouble, faSquareArrowUpRight, faFolderBlank, faUser, faGear, faList } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
   faInbox = faInbox
   faCheckDouble = faCheckDouble
   faSquareArrowUpRight = faSquareArrowUpRight
   faFolderBlank = faFolderBlank
   faPersonRifle = faUser
   faSpaghettiMonsterFlying = faGear
+  faList = faList
 
-  modalIssueVisible = false
+  modalVisible = false
 
-  openModalIssue(): void {
-    this.modalIssueVisible = true
+  openModal(): void {
+    this.modalVisible = true
   }
 
-  closeModalIssue(): void { 
-    this.modalIssueVisible = false    
+  closeModal(): void {
+    this.modalVisible = false
   }
 
-  elements = [
-    { id: 1, clicked: true },
-    { id: 2, clicked: false },
-    { id: 3, clicked: false }
-  ];
+  constructor(private activatedRoute: ActivatedRoute) { }
 
-  handleClick(element: any) {
-    this.elements.forEach(e => e.clicked = false);
-    element.clicked = true;
+  ngOnInit(): void {
+    this.activatedRoute.url.subscribe(url => {
+      const currentUrl = url.join('/')
+      const activeLink = document.querySelector(`.sidebar a[href='${currentUrl}']`)
+      if (activeLink) {
+        activeLink.classList.add('active')
+      }
+    })
   }
-  
+
 }

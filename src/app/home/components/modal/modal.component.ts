@@ -6,20 +6,20 @@ import { Subject } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-modal-issue',
-  templateUrl: './modal-issue.component.html',
-  styleUrls: ['./modal-issue.component.css'],
+  selector: 'app-modal',
+  templateUrl: './modal.component.html',
+  styleUrls: ['./modal.component.css'],
   providers: [DatePipe]
 })
-export class ModalIssueComponent implements OnInit {
+export class ModalComponent implements OnInit {
   faXmark = faXmark
   faArrowsUpDownLeftRight = faArrowsUpDownLeftRight
   faEllipsisVertical = faEllipsisVertical
 
-  @Output() closeIssue = new EventEmitter()
+  @Output() closeModal = new EventEmitter()
 
   close(): void {
-    this.closeIssue.emit()
+    this.closeModal.emit()
   }
 
   constructor(
@@ -29,19 +29,20 @@ export class ModalIssueComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  issueAdded: Subject<boolean> = new Subject<boolean>();
+  todoAdded: Subject<boolean> = new Subject<boolean>();
 
   myForm: FormGroup = this.fb.group({
     title: ['', Validators.required],
     description: ['', Validators.required],
-    dueDate: ['', Validators.required],
+    due_date: ['', Validators.required],
+    completed: false,
   })
 
   onSubmit() {
     if (this.myForm.valid) {
-      this.ds.createIssue(this.myForm.value)
+      this.ds.createTodo(this.myForm.value)
         .then(() => {
-          this.issueAdded.next(true);
+          this.todoAdded.next(true);
           this.close()
         })
     }

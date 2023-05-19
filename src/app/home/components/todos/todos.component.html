@@ -1,0 +1,53 @@
+<div class="m-8">
+  <p class="my-4 text-center">My Issues</p>
+
+  <!-- <div class="flex justify-between">
+    <div class="flex p-2">
+      <p class="m-2">Assigned</p>
+      <p class="m-2">Created</p>
+      <p class="m-2">To follow</p>
+    </div>
+
+    <div class="flex align-middle">
+      <button class="border rounded py-1 px-5 m-2">Filters</button>
+      <button class="border rounded py-1 px-5 m-2">New issue</button>
+    </div>
+  </div> -->
+
+  <div class="flex p-2 my-2 font-bold">
+    <div class="flex justify-between w-[90%]">
+      <p class="w-[80%]">Task</p>
+      <p class="w-[20%] flex justify-center">Due Date</p>
+    </div>
+    <div class="w-[10%] flex justify-center">
+      <p>Action</p>
+    </div>
+  </div>
+
+  <!-- <div class="m-4 relative overflow-y-auto h-[70vh]"> -->
+  <!-- <div> -->
+
+  <div *ngFor="let todo of pagedData; let index = index" class="" [ngClass]="{'flex p-2 bg-neutral-100' : index % 2 == 0 && todo.completed === false}">
+    <ng-container *ngIf="todo.completed === false">
+
+        <div class="flex justify-between w-[90%] m-auto text-sm">
+          <p class="w-[80%] px-1">{{todo.title}}</p>
+          <p class="w-[20%] flex justify-center px-1">{{todo.due_date | date}}</p>
+        </div>
+        <div class="w-[10%] flex justify-evenly">
+          <fa-icon class="cursor-pointer my-auto px-1" [icon]="faCheck" (click)="updateTodo(todo.key, true)"></fa-icon>
+          <!-- <fa-icon class="cursor-pointer my-auto px-1" [icon]="faPen" (click)="0"></fa-icon>
+        <fa-icon class="cursor-pointer my-auto px-1" [icon]="faTrash" (click)="deleteIssue(issue.key)"></fa-icon> -->
+        </div>
+
+    </ng-container>
+   </div>
+
+  <!-- <div class="flex justify-end my-2"> -->
+    <!-- <button [disabled]="currentPage == 1" (click)="currentPage = currentPage - 1">Previous</button> -->
+    <!-- <button class="border bg-neutral-100 px-2 m-1" *ngFor="let page of pages" [class.active]="currentPage == page" -->
+      <!-- (click)="currentPage = page">{{ page }}</button> -->
+    <!-- <button [disabled]="currentPage == totalPages" (click)="currentPage = currentPage + 1">Next</button> -->
+  <!-- </div> -->
+
+</div>

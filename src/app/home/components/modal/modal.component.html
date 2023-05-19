@@ -1,8 +1,8 @@
-<div class="absolute z-10 w-screen h-screen backdrop-blur-md bg-black/30"></div>
+<div class="absolute z-10 w-screen h-screen bg-black/30"></div>
 <div class="p-6 w-2/5 h-auto border rounded-lg bg-white absolute z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
 
   <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
-    <div class="flex justify-end">
+    <div class="flex justify-end h-auto">
       <fa-icon class="cursor-pointer px-2" [icon]="faXmark" (click)="close()"></fa-icon>
     </div>
     <div class="mb-4">
@@ -24,9 +24,9 @@
     <div class="flex mb-4">
       <p class="mr-4 text-slate-400">due date</p>
       <div>
-        <input formControlName="dueDate" type="date" name="dueDate" class="outline-none" />
+        <input formControlName="due_date" type="date" name="dueDate" class="outline-none" />
         <div
-          *ngIf="myForm.get('dueDate')?.invalid  && (myForm.get('dueDate')?.dirty || myForm.get('dueDate')?.touched)">
+          *ngIf="myForm.get('due_date')?.invalid  && (myForm.get('due_date')?.dirty || myForm.get('due_date')?.touched)">
           <p class="text-red-500 text-sm">due date is required.</p>
         </div>
       </div>
